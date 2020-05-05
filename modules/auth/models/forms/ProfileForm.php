@@ -6,6 +6,7 @@ namespace auth\models\forms;
 
 use auth\components\helpers\SendHelper;
 use auth\models\User;
+use borales\extensions\phoneInput\PhoneInputValidator;
 use Yii;
 use yii\base\Model;
 
@@ -17,6 +18,7 @@ class ProfileForm extends Model
     const SCENARIO_CHANGE_EMAIL    = 'change-email';
     const SCENARIO_CONFIRM_EMAIL   = 'confirm-email';
     const SCENARIO_CHANGE_PASSWORD = 'change-password';
+    const SCENARIO_ENTER_PHONE     = 'change-phone';
 
     /** @var string $email */
     public $email;
@@ -29,6 +31,9 @@ class ProfileForm extends Model
 
     /** @var string $newPassword */
     public $newPassword;
+
+    /** @var string $phone */
+    public $phone;
 
     /** @var string $confirmNewPassword */
     public $confirmNewPassword;
@@ -51,7 +56,31 @@ class ProfileForm extends Model
                 'newPassword',
                 'confirmNewPassword',
             ],
+            self::SCENARIO_ENTER_PHONE  => [
+                'phone',
+            ],
         ];
+    }
+
+    /**
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function changePhone(User $user): bool
+    {
+        if ($this->validate()) {
+            if (!Yii::$app->params['confirm_phone']) {
+                $user->phone = $this->phone;
+                $user->confirm_phone = null;
+                $user->save();
+
+                return true;
+            } else {
+                $this->addError('phone', 'Try later');
+            }
+        }
+        return false;
     }
 
     /**
@@ -64,6 +93,8 @@ class ProfileForm extends Model
             [['email', 'confirmEmailCode'], 'required', 'on' => self::SCENARIO_CHANGE_EMAIL],
             ['email', 'unique', 'targetClass' => User::class],
             ['email', 'email'],
+            ['phone', 'required', 'on' => self::SCENARIO_ENTER_PHONE],
+            ['phone', PhoneInputValidator::class],
             ['newPassword', 'validatePassword'],
         ];
     }

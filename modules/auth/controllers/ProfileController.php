@@ -6,6 +6,7 @@ namespace auth\controllers;
 
 use auth\models\forms\ProfileForm;
 use auth\models\forms\RegisterForm;
+use auth\models\forms\RestoreForm;
 use Throwable;
 use Yii;
 use yii\web\Controller;
@@ -93,5 +94,29 @@ class ProfileController extends Controller
         return $this->render('change_password', [
             'profileForm' => $profileForm,
         ]);
+    }
+
+    /**
+     * @return string|Response
+     */
+    public function actionChangePhone()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $profileForm = new ProfileForm(['scenario' => ProfileForm::SCENARIO_ENTER_PHONE]);
+
+        if ($profileForm->load(Yii::$app->request->post())
+            && $profileForm->changePhone(Yii::$app->user->getIdentity())) {
+            return $this->redirect('/profile');
+        }
+
+        return $this->render(
+            'phone_form',
+            [
+                'profileForm' => $profileForm,
+            ]
+        );
     }
 }

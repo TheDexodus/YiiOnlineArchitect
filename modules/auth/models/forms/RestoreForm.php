@@ -6,6 +6,7 @@ namespace auth\models\forms;
 
 use auth\components\helpers\SendHelper;
 use auth\models\User;
+use borales\extensions\phoneInput\PhoneInputValidator;
 use yii\base\Model;
 
 /**

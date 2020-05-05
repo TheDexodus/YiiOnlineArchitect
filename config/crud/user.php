@@ -11,7 +11,7 @@ use crud\components\Model;
 return [
     'class'   => User::class,
     'title'   => 'User',
-    'actions' => [Model::ACTION_CREATE, Model::ACTION_VIEW, Model::ACTION_UPDATE, Model::ACTION_DELETE],
+    'actions' => [Model::ACTION_VIEW, Model::ACTION_UPDATE, Model::ACTION_DELETE], //Model::ACTION_CREATE,
     'columns' => [
         'email'       => ['type' => 'text', 'validators' => ['required', 'email']],
         'first_name'  => ['type' => 'text', 'validators' => ['required']],
