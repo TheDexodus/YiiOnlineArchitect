@@ -1,0 +1,2 @@
+vendor_code	display_name	type_code	use_pattern	color	picture price	multiplier	details
+1	Test 1	1	color	#00FF00		1.23	3.21	{}
