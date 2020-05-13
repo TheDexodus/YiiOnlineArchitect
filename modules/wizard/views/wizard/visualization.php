@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
   textureFloor.wrapS = THREE.RepeatWrapping
   textureFloor.wrapT = THREE.RepeatWrapping
   textureFloor.repeat.set(4, 4)
-  var floorMaterial = new THREE.MeshPhysicalMaterial({ map: floorMaterial })
+  var floorMaterial = new THREE.MeshPhysicalMaterial({ map: textureFloor })
   <?php elseif (isset($records['floors'])):?>
   var floorMaterial = new THREE.MeshPhysicalMaterial({ color: <?=str_replace('#', '0x', $records['floors']->color)?> })
   <?php else:?>
