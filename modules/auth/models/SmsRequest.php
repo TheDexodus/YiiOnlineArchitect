@@ -10,7 +10,7 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
- * @property User $user
+ * @property User    $user
  * @property integer $request_time
  * @property integer $attempt
  */

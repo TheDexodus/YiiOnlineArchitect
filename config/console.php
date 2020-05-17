@@ -1,50 +1,50 @@
 <?php
 
-$params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+$params = require __DIR__.'/params.php';
+$db = require __DIR__.'/db.php';
 
 $config = [
-    'id' => 'basic-console',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'id'                  => 'basic-console',
+    'basePath'            => dirname(__DIR__),
+    'bootstrap'           => ['log'],
     'controllerNamespace' => 'app\commands',
-    'aliases' => [
+    'aliases'             => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
-        '@auth' => '@app/modules/auth',
+        '@auth'  => '@app/modules/auth',
     ],
-    'components' => [
-        'cache' => [
+    'components'          => [
+        'cache'       => [
             'class' => 'yii\caching\FileCache',
         ],
-        'log' => [
+        'log'         => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class'  => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
             ],
         ],
         'authManager' => [
-            'class' => 'yii\rbac\DbManager',
+            'class'        => 'yii\rbac\DbManager',
             'defaultRoles' => ['guest', 'user'],
         ],
-        'db' => $db,
+        'db'          => $db,
     ],
-    'controllerMap' => [
+    'controllerMap'       => [
         'migrate' => [
             'class'               => 'yii\console\controllers\MigrateController',
             'migrationNamespaces' => [
                 'app\migrations',
                 'auth\migrations',
             ],
-            'migrationPath' => [
+            'migrationPath'       => [
                 '@yii/rbac/migrations',
-            ]
+            ],
         ],
     ],
-    'params' => $params,
+    'params'              => $params,
     /*
     'controllerMap' => [
         'fixture' => [ // Fixture generation command line.

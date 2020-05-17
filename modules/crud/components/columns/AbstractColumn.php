@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace crud\components\columns;
 
 use yii\db\ActiveRecord;
-use yii\validators\Validator;
 
 /**
  * Class AbstractColumn

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace crud\components\columns;
 
+use yii\jui\DatePicker;
+
 /**
  * Class DateColumn
  */
 class DateColumn extends AbstractColumn
 {
-    /** @var string  */
+    /** @var string */
     protected $pattern = '[0-9]{2}.[0-9]{2}.[0-9]{4}';
 
     /**
@@ -31,19 +33,9 @@ class DateColumn extends AbstractColumn
     /**
      * @inheritDoc
      */
-    public function getFieldAction(): string
+    public function setWidget(?string $widget): void
     {
-        return 'input';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getFieldOptions(): array
-    {
-        return [
-            'date',
-        ];
+        $this->widget = $widget ?? DatePicker::class;
     }
 
     /**

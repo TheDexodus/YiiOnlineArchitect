@@ -6,7 +6,6 @@ namespace auth\controllers;
 
 use auth\models\forms\LoginForm;
 use auth\models\forms\RegisterForm;
-use auth\models\forms\RestoreForm;
 use Throwable;
 use Yii;
 use yii\web\Controller;

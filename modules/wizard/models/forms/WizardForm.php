@@ -117,7 +117,7 @@ class WizardForm extends Model
                 return $walls;
         }
 
-        return $floors+$cells+$walls;
+        return $floors + $cells + $walls;
     }
 
     /**

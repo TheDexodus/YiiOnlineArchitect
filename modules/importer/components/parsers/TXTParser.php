@@ -54,7 +54,13 @@ class TXTParser implements ModelParser
                     );
 
                     if (!$relationRecord instanceof $relationClass) {
-                        throw new Exception(sprintf('Model "%s" with column "%s" not founded', $modelClass, $relationMap['target_column']));
+                        throw new Exception(
+                            sprintf(
+                                'Model "%s" with column "%s" not founded',
+                                $modelClass,
+                                $relationMap['target_column']
+                            )
+                        );
                     }
 
                     $relations[$relationMap['attribute']] = $relationRecord;
@@ -65,7 +71,7 @@ class TXTParser implements ModelParser
 
                 $model->$column = $values[$columnIdx];
                 if ($modelClass::getTableSchema()->columns[$column]->type === 'json') {
-                    $condition[$column] = '"' . $values[$columnIdx] . '"';
+                    $condition[$column] = '"'.$values[$columnIdx].'"';
                 } else {
                     $condition[$column] = $values[$columnIdx];
                 }

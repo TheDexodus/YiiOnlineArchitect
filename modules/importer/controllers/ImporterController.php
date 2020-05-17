@@ -46,7 +46,7 @@ class ImporterController extends Controller
                 return $this->render(
                     'congratulation',
                     [
-                        'materialProvider' => $materialProvider,
+                        'materialProvider'     => $materialProvider,
                         'materialTypeProvider' => $materialTypeProvider,
                     ]
                 );

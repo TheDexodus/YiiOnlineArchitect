@@ -8,9 +8,7 @@ use auth\models\User;
 use borales\extensions\phoneInput\PhoneInputValidator;
 use DateTime;
 use Twilio\Exceptions\ConfigurationException;
-use Twilio\Exceptions\RestException;
 use Twilio\Exceptions\TwilioException;
-use Twilio\Rest\Client;
 use Yii;
 use yii\base\Model;
 
@@ -48,7 +46,7 @@ class RegisterForm extends Model
     /** @var string $confirmEmailCode */
     public $confirmEmailCode;
 
-    /** @var string $confirmEmailCode */
+    /** @var string $confirmPhoneCode */
     public $confirmPhoneCode;
 
     /**

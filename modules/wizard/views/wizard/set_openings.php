@@ -52,9 +52,9 @@ JS
 
         <?=Html::button('Add new door or window', ['class' => 'btn btn-primary', 'id' => 'btn-new'])?>
 
-        <?php $maxIdx = 0?>
+        <?php $maxIdx = 0 ?>
         <?php foreach ($form->openings as $idx => $opening): ?>
-            <?php $maxIdx = max($maxIdx, $idx)?>
+            <?php $maxIdx = max($maxIdx, $idx) ?>
             <div class="opening" id="opening-<?=$idx?>' + countOpenings + '">
                 <button type="button" class="btn btn-danger" onclick="$('#opening-<?=$idx?>').remove()">-</button>
                 <label>
@@ -71,7 +71,7 @@ JS
                 </label>
             </div>
         <?php endforeach; ?>
-        <?php $this->registerJsVar('countOpenings', $maxIdx+1)?>
+        <?php $this->registerJsVar('countOpenings', $maxIdx + 1) ?>
 
         <div class="openings">
         </div>

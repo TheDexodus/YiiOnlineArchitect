@@ -68,7 +68,9 @@ if (count($userCanActions) > 0) {
 
 <div class="category-index">
     <h1><?=Html::encode($this->title)?></h1>
-    <?php if ($model->canAction(Model::ACTION_CREATE) && Yii::$app->user->can('ROLE_'.strtoupper($model->name).'_CREATE')): ?>
+    <?php if ($model->canAction(Model::ACTION_CREATE) && Yii::$app->user->can(
+            'ROLE_'.strtoupper($model->name).'_CREATE'
+        )): ?>
         <p>
             <?=Html::a(
                 sprintf('Create %s', $model->title),

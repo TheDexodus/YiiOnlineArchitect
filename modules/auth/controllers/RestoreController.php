@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace auth\controllers;
 
-use auth\models\forms\RegisterForm;
 use auth\models\forms\RestoreForm;
 use Yii;
 use yii\web\Controller;

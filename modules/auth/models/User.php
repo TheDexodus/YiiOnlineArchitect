@@ -10,7 +10,6 @@ use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii2mod\rbac\models\AuthItemModel;
-use yii2mod\rbac\models\search\AuthItemSearch;
 
 /**
  * @property int           $id

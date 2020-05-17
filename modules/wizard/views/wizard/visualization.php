@@ -6,7 +6,6 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\web\View;
 
-
 $this->title = 'Wizard - Step 4';
 
 $this->params['breadcrumbs'][] = ['label' => $this->title];
@@ -62,7 +61,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
   var camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000)
   var renderer = new THREE.WebGLRenderer()
   renderer.setSize(400, 400)
-  renderer.setClearColor( 0x9dd0ff, 1 );
+  renderer.setClearColor(0x9dd0ff, 1)
   document.getElementsByClassName('canvas')[0].appendChild(renderer.domElement)
 
   var floor = new THREE.BoxGeometry()

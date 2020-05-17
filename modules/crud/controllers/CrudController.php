@@ -170,7 +170,6 @@ class CrudController extends Controller
         );
     }
 
-
     /**
      * @param string $name
      *
@@ -204,8 +203,8 @@ class CrudController extends Controller
         return $this->render(
             'update',
             [
-                'form'  => $form,
-                'model' => $model,
+                'form'      => $form,
+                'model'     => $model,
                 'fillModel' => $fillModel,
             ]
         );
@@ -249,7 +248,7 @@ class CrudController extends Controller
 
         if (!Yii::$app->authManager->checkAccess(
             Yii::$app->user->id,
-            'ROLE_'.NameHelper::getRoleName($modelName). '_' . strtoupper($action)
+            'ROLE_'.NameHelper::getRoleName($modelName).'_'.strtoupper($action)
         )) {
             throw new ForbiddenHttpException('You do not have access to this page.');
         }

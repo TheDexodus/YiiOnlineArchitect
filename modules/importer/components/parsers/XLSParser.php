@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
 /**
  * Class XLSParser
  */
-class XLSParser  implements ModelParser
+class XLSParser implements ModelParser
 {
     /**
      * @inheritDoc
@@ -61,7 +61,13 @@ class XLSParser  implements ModelParser
                         );
 
                         if (!$relationRecord instanceof $relationClass) {
-                            throw new Exception(sprintf('Model "%s" with column "%s" not founded', $modelClass, $relationMap['target_column']));
+                            throw new Exception(
+                                sprintf(
+                                    'Model "%s" with column "%s" not founded',
+                                    $modelClass,
+                                    $relationMap['target_column']
+                                )
+                            );
                         }
 
                         $relations[$relationMap['attribute']] = $relationRecord;
@@ -74,7 +80,7 @@ class XLSParser  implements ModelParser
                             $value = '{}';
                         }
                         $model->$columnName = $value;
-                        $condition[$columnName] = '"' . $value . '"';
+                        $condition[$columnName] = '"'.$value.'"';
                     } else {
                         $condition[$columnName] = $value;
                         $model->$columnName = $value;

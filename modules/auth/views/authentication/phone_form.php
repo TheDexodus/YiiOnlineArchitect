@@ -1,11 +1,9 @@
 <?php
 
 use auth\models\forms\RegisterForm;
-use auth\models\User;
 use borales\extensions\phoneInput\PhoneInput;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
-use yii\widgets\MaskedInput;
 
 /** @var RegisterForm $registerForm */
 

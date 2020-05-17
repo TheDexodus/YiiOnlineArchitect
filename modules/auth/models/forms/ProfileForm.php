@@ -56,7 +56,7 @@ class ProfileForm extends Model
                 'newPassword',
                 'confirmNewPassword',
             ],
-            self::SCENARIO_ENTER_PHONE  => [
+            self::SCENARIO_ENTER_PHONE     => [
                 'phone',
             ],
         ];
@@ -80,6 +80,7 @@ class ProfileForm extends Model
                 $this->addError('phone', 'Try later');
             }
         }
+
         return false;
     }
 

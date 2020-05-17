@@ -16,7 +16,7 @@ $config = [
         '@auth'     => '@app/modules/auth',
         '@crud'     => '@app/modules/crud',
         '@importer' => '@app/modules/importer',
-        '@wizard' => '@app/modules/wizard',
+        '@wizard'   => '@app/modules/wizard',
     ],
     'components' => [
         'request' => [
@@ -86,7 +86,7 @@ $config = [
         'importer' => [
             'class' => 'importer\Module',
         ],
-        'wizard' => [
+        'wizard'   => [
             'class' => 'wizard\Module',
         ],
         'rbac'     => [

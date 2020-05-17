@@ -66,26 +66,38 @@ class WizardController extends Controller
                     $form->goodMaterials = $materialRecords;
 
                     if ($step > 4) {
-                        return $this->render('bill', [
-                            'form' => $form,
-                        ]);
+                        return $this->render(
+                            'bill',
+                            [
+                                'form' => $form,
+                            ]
+                        );
                     }
 
-                    return $this->render('visualization', [
-                        'form' => $form,
-                        'records' => $materialRecords,
-                    ]);
+                    return $this->render(
+                        'visualization',
+                        [
+                            'form'    => $form,
+                            'records' => $materialRecords,
+                        ]
+                    );
                 }
 
-                return $this->render('select_material', [
-                    'form' => $form,
-                    'materials' => $materials,
-                ]);
+                return $this->render(
+                    'select_material',
+                    [
+                        'form'      => $form,
+                        'materials' => $materials,
+                    ]
+                );
             }
-            
-            return $this->render('set_openings', [
-                'form' => $form,
-            ]);
+
+            return $this->render(
+                'set_openings',
+                [
+                    'form' => $form,
+                ]
+            );
         }
 
         return $this->render(

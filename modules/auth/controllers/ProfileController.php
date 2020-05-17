@@ -69,7 +69,7 @@ class ProfileController extends Controller
         $profileForm = new ProfileForm(['scenario' => ProfileForm::SCENARIO_CONFIRM_EMAIL]);
         $profileForm->setAttributes(
             [
-                'email' => $getEmail,
+                'email'            => $getEmail,
                 'confirmEmailCode' => $getCode,
             ]
         );
@@ -91,9 +91,12 @@ class ProfileController extends Controller
             return $this->goHome();
         }
 
-        return $this->render('change_password', [
-            'profileForm' => $profileForm,
-        ]);
+        return $this->render(
+            'change_password',
+            [
+                'profileForm' => $profileForm,
+            ]
+        );
     }
 
     /**

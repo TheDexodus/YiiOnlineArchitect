@@ -1,7 +1,6 @@
 <?php
 
 use auth\models\forms\ProfileForm;
-use borales\extensions\phoneInput\PhoneInput;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 

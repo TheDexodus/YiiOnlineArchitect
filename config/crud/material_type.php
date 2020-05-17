@@ -28,9 +28,9 @@ return [
         'measurements'        => [
             'type'       => 'choice',
             'values'     => [
-                MaterialType::MEASUREMENT_LITRES => 'Litres',
-                MaterialType::MEASUREMENT_RUNNING_METRES  => 'Running metres',
-                MaterialType::MEASUREMENT_KILOGRAMMES  => 'Kilogrammes',
+                MaterialType::MEASUREMENT_LITRES         => 'Litres',
+                MaterialType::MEASUREMENT_RUNNING_METRES => 'Running metres',
+                MaterialType::MEASUREMENT_KILOGRAMMES    => 'Kilogrammes',
             ],
             'validators' => ['required'],
         ],

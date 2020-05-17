@@ -2,7 +2,6 @@
 
 use app\models\Material;
 use app\models\MaterialType;
-use auth\models\User;
 use crud\components\columns\HasOneColumn;
 
 return [
@@ -36,7 +35,7 @@ return [
             'validators' => [
                 [
                     'required',
-                    'when' => function ($model) {
+                    'when'       => function ($model) {
                         return $model->model_use_pattern === 'color';
                     },
                     'whenClient' => "function (attribute, value) {

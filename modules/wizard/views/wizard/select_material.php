@@ -174,8 +174,10 @@ CSS
                                 ? $form->materials[$key] : null)): ?> display: none;<?php endif ?>" class="label-use">
                             Use this material
                         </label>
-                        <?php if ($material->vendor_code == (isset($form->materials[$key])? $form->materials[$key] : null)): ?>
-                            <input class="input-<?=$key?>" type="hidden" name="WizardForm[materials][<?=$key?>]" value="<?=$form->materials[$key]?>">
+                        <?php if ($material->vendor_code == (isset($form->materials[$key]) ? $form->materials[$key]
+                                : null)): ?>
+                            <input class="input-<?=$key?>" type="hidden" name="WizardForm[materials][<?=$key?>]"
+                                   value="<?=$form->materials[$key]?>">
                         <?php endif ?>
                     </div>
                 <?php endforeach; ?>

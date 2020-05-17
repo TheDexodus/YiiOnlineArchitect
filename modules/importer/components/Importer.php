@@ -1,6 +1,8 @@
 <?php
 
-class Importer extends \yii\base\Component
+use yii\base\Component;
+
+class Importer extends Component
 {
     /**
      * @return void

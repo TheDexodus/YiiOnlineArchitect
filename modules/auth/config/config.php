@@ -12,7 +12,7 @@ return [
         'password/change'     => 'auth/restore/new-password',
         'confirm/<_a>'        => 'auth/authentication/confirm-<_a>',
     ],
-    'confirm_phone' => false,
+    'confirm_phone'   => false,
     'sms_repeat_send' => [
         // The key is the number of the attempt. The value is the timeout for the next attempt (in seconds).
         '0'  => 0,

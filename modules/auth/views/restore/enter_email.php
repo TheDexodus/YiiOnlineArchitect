@@ -21,7 +21,7 @@ $form = ActiveForm::begin(
 
 ?>
 
-<h1>Restore Password</h1>
+    <h1>Restore Password</h1>
 
 <?=$form->field($restoreForm, 'email')->textInput()?>
 

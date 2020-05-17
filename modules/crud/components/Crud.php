@@ -63,9 +63,12 @@ class Crud extends Component
      */
     public function getModelsForAction(string $action): array
     {
-        return array_filter($this->_models, function ($model) use ($action) {
-            /** @var Model $model */
-            return $model->canAction($action);
-        });
+        return array_filter(
+            $this->_models,
+            function ($model) use ($action) {
+                /** @var Model $model */
+                return $model->canAction($action);
+            }
+        );
     }
 }
