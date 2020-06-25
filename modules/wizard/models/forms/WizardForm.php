@@ -80,6 +80,82 @@ class WizardForm extends Model
     }
 
     /**
+     * @param string|null $type
+     *
+     * @return float
+     */
+    public function getSquare(string $type = null): float
+    {
+        $floors = 0;
+        $cells = 0;
+        $walls = 0;
+
+        if (isset($this->goodMaterials['floors'])) {
+            $floors = (float)$this->floor_width * (float)$this->floor_height;
+        }
+
+        if (isset($this->goodMaterials['cells'])) {
+            $cells = (float)$this->floor_width * (float)$this->floor_height;
+        }
+
+        if (isset($this->goodMaterials['walls'])) {
+            $openingArea = 0;
+
+            foreach ($this->openings as $item) {
+                $openingArea += $item['width'] * $item['height'];
+            }
+
+            $walls = (float)$this->floor_width * (float)$this->wall_height * 2 + (float)$this->floor_height * (float)$this->wall_height * 2 - $openingArea;
+        }
+
+        switch ($type) {
+            case 'floors':
+                return $floors;
+            case 'cells':
+                return $cells;
+            case 'walls':
+                return $walls;
+        }
+
+        return $floors + $cells + $walls;
+    }
+
+    /**
+     * @param string $type
+     *
+     * @return int
+     */
+    public function getCount(string $type = null): int
+    {
+        $floors = 0;
+        $cells = 0;
+        $walls = 0;
+
+        if (isset($this->goodMaterials['floors'])) {
+            $floors = (int)ceil($this->getSquare('floors') * $this->goodMaterials['floors']->multiplier);
+        }
+
+        if (isset($this->goodMaterials['cells'])) {
+            $cells = (int)ceil($this->getSquare('cells') * $this->goodMaterials['cells']->multiplier);
+        }
+
+        if (isset($this->goodMaterials['walls'])) {
+            $walls = (int)ceil($this->getSquare('walls') * $this->goodMaterials['walls']->multiplier);
+        }
+
+        switch ($type) {
+            case 'floors':
+                return $floors;
+            case 'cells':
+                return $cells;
+            case 'walls':
+                return $walls;
+        }
+
+        return $floors + $cells + $walls;
+    }
+
+    /**
      * @param string $type
      *
      * @return float
@@ -91,21 +167,15 @@ class WizardForm extends Model
         $walls = 0;
 
         if (isset($this->goodMaterials['floors'])) {
-            $floors = $this->floor_width * $this->floor_height * $this->goodMaterials['floors']->price * $this->goodMaterials['floors']->multiplier;
+            $floors = $this->getCount('floors') * $this->goodMaterials['floors']->price;
         }
 
         if (isset($this->goodMaterials['cells'])) {
-            $cells = $this->floor_width * $this->floor_height * $this->goodMaterials['cells']->price * $this->goodMaterials['cells']->multiplier;
+            $cells = $this->getCount('cells') * $this->goodMaterials['cells']->price;
         }
 
         if (isset($this->goodMaterials['walls'])) {
-            $openingArea = 0;
-
-            foreach ($this->openings as $item) {
-                $openingArea += $item['width'] * $item['height'];
-            }
-
-            $walls = ($this->floor_width * $this->wall_height * 2 + $this->floor_height * $this->wall_height * 2 - $openingArea) * $this->goodMaterials['walls']->price * $this->goodMaterials['walls']->multiplier;
+            $walls = $this->getCount('walls') * $this->goodMaterials['walls']->price;
         }
 
         switch ($type) {

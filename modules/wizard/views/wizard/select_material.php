@@ -147,7 +147,7 @@ CSS
                 $key,
                 $form->usage_material
             )): ?> style="display: none"<?php endif ?>>
-                <h1><?=$key?></h1>
+                <h1><?=ucfirst($key)?></h1>
                 <?php /** @var Material $material */ ?>
                 <?php foreach ($typeMaterials as $material): ?>
                     <?php $details = json_decode($material->details) ?>
@@ -158,16 +158,12 @@ CSS
                          data-toggle="popover" data-placement="top"
                          data-content="<?=isset($details->text) ? $details->text : 'Material for '.$key?>">
                         <div style="display: flex;">
-                            <?php if ($material->use_pattern === 'picture'): ?>
-                                <img style="width: 108px; height: 108px; margin: 0 8px 0 0"
-                                     src="<?='/img/materials/'.$material->picture?>" alt="">
-                            <?php else: ?>
-                                <div style="background-color: <?=$material->color?>; width: 108px; height: 108px; margin: 0 8px 0 0"></div>
-                            <?php endif ?>
+                            <img style="width: 108px; height: 108px; margin: 0 8px 0 0"
+                                 src="<?='/img/materials_photo/'.$material->photo?>" alt="">
                             <div style="display: flex; flex-direction: column;">
                                 <h4><?=$material->display_name?></h4>
                                 <h5>Price: <?=$material->price?> per <?=$material->type->measurements?></h5>
-                                <h5>Price per m^2: <?=$material->price * $material->multiplier?></h5>
+                                <h5>Price per m<span style="vertical-align: super; font-size: 8pt">2</span>: <?=$material->price * $material->multiplier?></h5>
                             </div>
                         </div>
                         <label style="margin: auto 0;<?php if ($material->vendor_code != (isset($form->materials[$key])

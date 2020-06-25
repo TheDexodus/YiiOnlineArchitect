@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
  * @property MaterialType $type
  * @property string       $color
  * @property string       $use_pattern
+ * @property string       $photo
  * @property string       $picture
  * @property int          $price
  * @property int          $multiplier

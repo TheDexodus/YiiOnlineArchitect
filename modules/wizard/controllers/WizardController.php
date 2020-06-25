@@ -74,11 +74,19 @@ class WizardController extends Controller
                         );
                     }
 
+                    $room = [
+                        'sizeX'    => (float)$form->floor_width,
+                        'sizeY'    => (float)$form->wall_height,
+                        'sizeZ'    => (float)$form->floor_height,
+                        'openings' => $form->openings,
+                    ];
+
                     return $this->render(
                         'visualization',
                         [
                             'form'    => $form,
                             'records' => $materialRecords,
+                            'room'    => $room,
                         ]
                     );
                 }

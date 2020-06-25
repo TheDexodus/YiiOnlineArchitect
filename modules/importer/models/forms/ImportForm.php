@@ -72,12 +72,14 @@ class ImportForm extends Model
 
                 if ($materialExtension === null ||
                     $materialTypeExtension === null ||
-                    !file_exists($extractDirPath.'images') ||
-                    !is_dir($extractDirPath.'images')
+                    !file_exists($extractDirPath.'pictures') ||
+                    !is_dir($extractDirPath.'pictures') ||
+                    !file_exists($extractDirPath.'photos') ||
+                    !is_dir($extractDirPath.'photos')
                 ) {
                     $this->addError(
                         'file',
-                        'Invalid files: In the zip archive there should be a "images" directory and 2 files (in one of the following expansions: txt, csv, xsl): materials, material_types'
+                        'Invalid files: In the zip archive there should be a "photos" and "pictures" directories and 2 files (in one of the following expansions: txt, csv, xsl): materials, material_types'
                     );
 
                     return null;
@@ -102,10 +104,20 @@ class ImportForm extends Model
                     $result['materials'] = [];
                     /** @var Material $material */
                     foreach ($materials as $material) {
+                        if (!file_exists($extractDirPath.'photos/'.$material->photo)) {
+                            $material->delete();
+                            continue;
+                        }
+
+                        rename(
+                            $extractDirPath.'photos/'.$material->photo,
+                            Yii::getAlias('@web/app/web/img/materials_photo/'.$material->photo)
+                        );
+
                         if ($material->use_pattern === 'picture') {
                             $picture = $material->picture;
 
-                            if (!file_exists($extractDirPath.'images/'.$picture)) {
+                            if (!file_exists($extractDirPath.'pictures/'.$picture)) {
                                 $material->delete();
                                 continue;
                             }

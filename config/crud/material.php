@@ -30,6 +30,19 @@ return [
             'values'     => ['picture' => 'Picture', 'color' => 'Color'],
             'validators' => ['required'],
         ],
+        'photo'      => [
+            'type'       => 'file',
+            'save_path'  => '@web/app/web/img/materials_photo/',
+            'validators' => [
+                [
+                    'required',
+                ],
+                [
+                    'file',
+                    'extensions' => ['png', 'jpg', 'jpeg', 'bmp'],
+                ],
+            ],
+        ],
         'color'        => [
             'type'       => 'color',
             'validators' => [

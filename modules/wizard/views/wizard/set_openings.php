@@ -17,14 +17,14 @@ $this->registerJs(
 $("#btn-new").click(function() {
   console.log('Hello :)')
   
-  let newElement = '<div class="opening" id="opening-' + countOpenings + '">' +
+  let newElement = '<div class="opening" id="opening-' + countOpenings + '" style="margin-bottom: 8px">' +
       '                <button type="button" class="btn btn-danger" onclick="$(\'#opening-' + countOpenings + '\').remove()">-</button>'+
 '                <label>'+
-'                    Width'+
+'                    Width<span style="color: gray">(meters)</span>'+
 '                    <input type="number" name="WizardForm[openings][' + countOpenings + '][width]" value="0" min="0.01" step="0.01">'+
 '                </label>'+
 '                <label>'+
-'                    Height'+
+'                    Height<span style="color: gray">(meters)</span>'+
 '                    <input type="number" name="WizardForm[openings][' + countOpenings + '][height]" value="0" min="0.01" step="0.01">'+
 '                </label>'+
 '            </div>';
@@ -50,21 +50,21 @@ JS
         <?=$htmlForm->field($form, 'floor_height')->hiddenInput()->label(false)?>
         <?=$htmlForm->field($form, 'wall_height')->hiddenInput()->label(false)?>
 
-        <?=Html::button('Add new door or window', ['class' => 'btn btn-primary', 'id' => 'btn-new'])?>
+        <?=Html::button('Add new door or window', ['class' => 'btn btn-primary', 'id' => 'btn-new', 'style' => 'margin-bottom: 16px'])?>
 
         <?php $maxIdx = 0 ?>
         <?php foreach ($form->openings as $idx => $opening): ?>
             <?php $maxIdx = max($maxIdx, $idx) ?>
-            <div class="opening" id="opening-<?=$idx?>' + countOpenings + '">
+            <div class="opening" id="opening-<?=$idx?>' + countOpenings + '" style="margin-bottom: 8px">
                 <button type="button" class="btn btn-danger" onclick="$('#opening-<?=$idx?>').remove()">-</button>
                 <label>
-                    Width
+                    Width<span style="color: gray">(meters)</span>
                     <input type="number" name="WizardForm[openings][<?=$idx?>][width]" value="<?=$opening['width']?>"
                            min="0.01"
                            step="0.01">
                 </label>
                 <label>
-                    Height
+                    Height<span style="color: gray">(meters)</span>
                     <input type="number" name="WizardForm[openings][<?=$idx?>][height]" value="<?=$opening['height']?>"
                            min="0.01"
                            step="0.01">
@@ -77,7 +77,7 @@ JS
         </div>
 
         <div class="form-group">
-            <?=Html::submitButton('Next', ['class' => 'btn btn-success'])?>
+            <?=Html::submitButton('Next', ['class' => 'btn btn-success', 'style' => 'margin-top: 16px'])?>
         </div>
 
         <?php ActiveForm::end(); ?>
