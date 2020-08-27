@@ -41,6 +41,8 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
   // center is old, deprecated; use "target" instead
   this.center = this.target;
 
+  this.minY = 0;
+
   // This option actually enables dollying in and out; left as "zoom" for
   // backwards compatibility
   this.noZoom = false;
@@ -126,7 +128,6 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
     }
 
     phiDelta -= angle;
-
   };
 
   // pass in distance in world space to move left
@@ -245,14 +246,20 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
     // restrict radius to be between desired limits
     radius = Math.max( this.minDistance, Math.min( this.maxDistance, radius ) );
 
-    // move target to panned location
-    this.target.add( pan );
 
     offset.x = radius * Math.sin( phi ) * Math.sin( theta );
     offset.y = radius * Math.cos( phi );
     offset.z = radius * Math.sin( phi ) * Math.cos( theta );
 
-    position.copy( this.target ).add( offset );
+    // move target to panned location
+    this.target.add( pan );
+
+    if (position.copy( this.target ).y + offset.y < this.minY) {
+      position.copy(lastPosition)
+    } else {
+      position.copy( this.target ).add( offset );
+    }
+
 
     this.object.lookAt( this.target );
 
@@ -285,7 +292,6 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
   }
 
   function onMouseDown( event ) {
-
     if ( scope.enabled === false ) { return; }
     event.preventDefault();
 
@@ -302,7 +308,6 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
       state = STATE.DOLLY;
 
       dollyStart.set( event.clientX, event.clientY );
-
     } else if ( event.button === 2 ) {
       if ( scope.noPan === true ) { return; }
 
@@ -315,7 +320,6 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
     // Greggman fix: https://github.com/greggman/three.js/commit/fde9f9917d6d8381f06bf22cdff766029d1761be
     scope.domElement.addEventListener( 'mousemove', onMouseMove, false );
     scope.domElement.addEventListener( 'mouseup', onMouseUp, false );
-
   }
 
   function onMouseMove( event ) {
@@ -341,20 +345,15 @@ THREE.OrbitControls = function ( object, domElement, localElement ) {
       rotateStart.copy( rotateEnd );
 
     } else if ( state === STATE.DOLLY ) {
-
       if ( scope.noZoom === true ) return;
 
       dollyEnd.set( event.clientX, event.clientY );
       dollyDelta.subVectors( dollyEnd, dollyStart );
 
       if ( dollyDelta.y > 0 ) {
-
         scope.dollyIn();
-
       } else {
-
         scope.dollyOut();
-
       }
 
       dollyStart.copy( dollyEnd );
